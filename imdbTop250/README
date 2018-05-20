@@ -1,1 +1,8 @@
 Fetch the names of movies from the IMDB top 250 list by year or by ratings
+
+Requirements:
+===============
+
+python v2
+beautifulsoup4
+requests
