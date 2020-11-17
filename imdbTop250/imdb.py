@@ -5,7 +5,6 @@ import requests
 
 movies, ratings = None, None
 
-
 def parse_imdb():
     global movies, ratings
     movies = list()
@@ -47,18 +46,18 @@ def suggest_movie(year):
     for index, movie in enumerate(movies):
         if movie[2] == year:
             count = 1
-            item = movie[1] + " (" + ratings[index] + ")"
+            item = movie[1] + " -> " + ratings[index]
             mlen.append(len(item))
             temp.append(item)
     if not count:
-        print "Sorry! No such movie available"
+        print("Sorry! No such movie available")
     else:
         ch = max(mlen)
-        print ch * "-"
+        print(ch * "-")
         for item in temp:
-            print item
-        print ch * "-"
-    print
+            print(item)
+        print(ch * "-")
+    print()
 
 
 def suggest_movie_rated(min_rate, max_rate):
@@ -72,33 +71,33 @@ def suggest_movie_rated(min_rate, max_rate):
         if float(rating) < float(min_rate) or float(rating) > float(max_rate):
             continue
         count = 1
-        item = movies[index][1] + " (" + ratings[index] + ")"
+        item = movies[index][1] + " (" + movies[index][2] + ")" + " -> " + ratings[index]
         mlen.append(len(item))
         temp.append(item)
     if not count:
-        print "Sorry! No such movie available"
+        print("Sorry! No such movie available")
     else:
         ch = max(mlen)
-        print ch * "-"
+        print(ch * "-")
         for item in temp:
-            print item
-        print ch * "-"
-    print
+            print(item)
+        print(ch * "-")
+    print()
 
 
 def main():
-    inp = raw_input('1. Search movie by year\n2. Search movie by ratings\n\nEnter Choice: ')
+    inp = input('1. Search movie by year\n2. Search movie by ratings\n\nEnter Choice: ')
     if inp == '1':
-	    year = raw_input('Enter year: ')
+	    year = input('Enter year: ')
 	    suggest_movie(year)
     
     elif inp == '2':
-        minRate = raw_input('Enter minimum rating: ')
-        maxRate = raw_input('Enter maximum rating: ')
+        minRate = input('Enter minimum rating: ')
+        maxRate = input('Enter maximum rating: ')
         suggest_movie_rated(minRate, maxRate)		
 	
     else:
-        print 'Incorrect Choice!!!\n'	
+        print('Incorrect Choice!!!\n')	
 		
 if __name__ == '__main__':
     main()
